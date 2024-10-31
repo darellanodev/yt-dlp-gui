@@ -1,0 +1,21 @@
+/* estilos.css */
+body {
+    background-color: #222;
+    color: #fff;
+}
+
+h1 {
+    color: #fff;
+}
+
+textarea {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+#Results {
+    background-color: #555;
+}

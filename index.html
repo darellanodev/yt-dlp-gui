@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>yt-dlp-gui</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1>yt-dlp-gui</h1>
+    <textarea id="myTextarea" rows="10" cols="50"></textarea>
+    <br>
+    <input type="radio" id="audio" name="type" value="audio" checked>
+    <label for="audio">Audio</label>
+    <br>
+    <input type="radio" id="video" name="type" value="video">
+    <label for="video">Video</label>
+    <br>
+    <input type="text" id="folder" name="folder" placeholder="insert folder">
+    <button id="saveButton">Process</button>
+    <br>
+    <textarea id="Results" rows="10" cols="50"></textarea>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
