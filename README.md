@@ -2,6 +2,8 @@
 
 This a graphical user interface (GUI) for the yt-dlp program. It is project to learn about Electron.
 
+## THIS APPLICATION IS IN AN EARLY STAGE OF DEVELOPMENT
+
 ## Github repository
 
 - <https://github.com/darellanodev/yt-dlp-gui>
