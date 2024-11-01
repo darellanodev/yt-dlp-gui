@@ -2,6 +2,10 @@
 
 This a graphical user interface (GUI) for the yt-dlp program. It is project to learn about Electron.
 
+## Github repository
+
+- <https://github.com/darellanodev/yt-dlp-gui>
+
 ## Installation
 
 I use PNPM, so after you install PNPM, run `pnpm install`
