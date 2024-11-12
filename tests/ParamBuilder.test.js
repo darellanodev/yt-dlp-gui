@@ -17,3 +17,9 @@ test('getQuality when type is video and quality is normal', () => {
     const result = paramBuilder.getQuality('video', 'normal');
     expect(result).toBe('best[ext=mp4]/best');
 })
+
+test('getQuality when type is audio and quality is normal', () => {
+    const paramBuilder = new ParamBuilder();
+    const result = paramBuilder.getQuality('audio', 'normal');
+    expect(result).toBe('');
+})
