@@ -2,9 +2,11 @@
   "name": "yt-dlp-gui",
   "main": "main.js",
   "devDependencies": {
-    "electron": "^33.0.2"
+    "electron": "^33.0.2",
+    "jest": "^29.7.0"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "jest"
   }
 }
