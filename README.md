@@ -14,4 +14,10 @@ I use PNPM, so after you install PNPM, run `pnpm install`
 
 ## Running the application
 
-run `pnpm start` or execute `./run.sh` (they are the same)
+Run `pnpm start` or execute `./run.sh` (they are the same)
+
+Also you can open the `index.html` with the Live Server VSCode extension or other web server.
+
+## Running the tests
+
+Execute `./run_tests.sh` (they are the same)
