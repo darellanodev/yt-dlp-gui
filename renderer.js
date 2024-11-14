@@ -17,14 +17,15 @@ saveButton.addEventListener('click', () => {
   const selectedType = typeRadio.find(radio => radio.checked);
   if (selectedType.value === 'audio') {
     const quality = paramBuilder.getQuality(selectedType.value)
+    const cookiesFromBrowser = paramBuilder.getCookiesFromBrowser();
 
     prefix = `yt-dlp -f bestaudio -x --audio-format mp3 ${quality} "`;
-    suffix = '" -o "folder1/%%(title)s.%%(ext)s" --cookies-from-browser firefox --restrict-filenames';
+    suffix = `" -o "folder1/%%(title)s.%%(ext)s" ${cookiesFromBrowser} --restrict-filenames`;
   } else if (selectedType.value === 'video') {
     const quality = paramBuilder.getQuality(selectedType.value)
 
     prefix = 'yt-dlp.exe "https://www.youtube.com/watch?v=vrjCRv2vBqM" -f "';
-    suffix = `" -f "${quality}" --cookies-from-browser firefox --restrict-filenames -o "folder1/%%(title)s.%%(ext)s"`;
+    suffix = `" -f "${quality}" ${cookiesFromBrowser} --restrict-filenames -o "folder1/%%(title)s.%%(ext)s"`;
   }
 
   const processedLines = lines.map(line => `${prefix} ${line} ${suffix}`);

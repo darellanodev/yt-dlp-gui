@@ -6,4 +6,7 @@ export class ParamBuilder {
           return quality === 'high' ? 'bestvideo+bestaudio[ext=m4a]' : 'best[ext=mp4]/best';
         }
       }
+    getCookiesFromBrowser () {
+        return '--cookies-from-browser firefox';
+    }
 }
