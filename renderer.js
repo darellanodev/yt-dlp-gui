@@ -15,11 +15,13 @@ saveButton.addEventListener('click', () => {
   const paramBuilder = new ParamBuilder();
 
   const selectedType = typeRadio.find(radio => radio.checked);
+
+  const cookiesFromBrowser = paramBuilder.getCookiesFromBrowser();
+  const restrictFilenames = paramBuilder.getRestrictFilenames();
+  const getOutputFolder = paramBuilder.getOutputFolder();
+  
   if (selectedType.value === 'audio') {
     const quality = paramBuilder.getQuality(selectedType.value)
-    const cookiesFromBrowser = paramBuilder.getCookiesFromBrowser();
-    const restrictFilenames = paramBuilder.getRestrictFilenames();
-    const getOutputFolder = paramBuilder.getOutputFolder();
 
     prefix = `yt-dlp -f bestaudio -x --audio-format mp3 ${quality} "`;
     suffix = `" ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
