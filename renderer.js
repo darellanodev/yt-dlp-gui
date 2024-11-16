@@ -6,9 +6,9 @@ const resultsTextarea = document.getElementById('Results');
 const typeRadio = Array.from(document.getElementsByName('type'));
 const qualityRadio = Array.from(document.getElementsByName('quality'));
 
+const getLinks = () => textarea.value.split('\n');
+
 saveButton.addEventListener('click', () => {
-  const content = textarea.value;
-  const lines = content.split('\n');
   let prefix = '';
   let suffix = '';
 
@@ -30,8 +30,6 @@ saveButton.addEventListener('click', () => {
     suffix = `" -f "${quality}" ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
   }
 
-  const processedLines = lines.map(line => `${prefix} ${line} ${suffix}`);
-  const processedContent = processedLines.join('\n');
-  resultsTextarea.value = processedContent;
+  resultsTextarea.value = getLinks().map(line => `${prefix} ${line} ${suffix}`).join('\n');
 });
 
