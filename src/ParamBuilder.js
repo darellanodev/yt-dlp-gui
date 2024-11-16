@@ -9,4 +9,8 @@ export class ParamBuilder {
     getCookiesFromBrowser () {
         return '--cookies-from-browser firefox';
     }
+    
+    getRestrictFilenames () {
+        return '--restrict-filenames';
+    }
 }

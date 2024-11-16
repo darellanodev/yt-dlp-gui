@@ -29,3 +29,9 @@ test('getCookiesFromBrowser', () => {
     const result = paramBuilder.getCookiesFromBrowser();
     expect(result).toBe('--cookies-from-browser firefox');
 })
+
+test('getRestrictFilenames', () => {
+    const paramBuilder = new ParamBuilder();
+    const result = paramBuilder.getRestrictFilenames();
+    expect(result).toBe('--restrict-filenames');
+})
