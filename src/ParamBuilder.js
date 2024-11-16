@@ -13,4 +13,8 @@ export class ParamBuilder {
     getRestrictFilenames () {
         return '--restrict-filenames';
     }
+
+    getOutputFolder () {
+      return '-o "folder1/%%(title)s.%%(ext)s"';
+    }
 }

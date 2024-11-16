@@ -35,3 +35,9 @@ test('getRestrictFilenames', () => {
     const result = paramBuilder.getRestrictFilenames();
     expect(result).toBe('--restrict-filenames');
 })
+
+test('getOutputFolder', () => {
+    const paramBuilder = new ParamBuilder();
+    const result = paramBuilder.getOutputFolder();
+    expect(result).toBe('-o "folder1/%%(title)s.%%(ext)s"');
+})
