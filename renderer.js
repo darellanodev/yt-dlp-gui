@@ -23,7 +23,7 @@ saveButton.addEventListener('click', () => {
   if (selectedType.value === 'audio') {
     const quality = paramBuilder.getQuality(selectedType.value)
 
-    prefix = `yt-dlp -f bestaudio -x --audio-format mp3 ${quality} "`;
+    prefix = `yt-dlp.exe -f bestaudio -x --audio-format mp3 ${quality} "`;
     suffix = `" ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
   } else if (selectedType.value === 'video') {
     const quality = paramBuilder.getQuality(selectedType.value)
