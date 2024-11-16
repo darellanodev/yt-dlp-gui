@@ -21,7 +21,7 @@ test('getQuality when type is video and quality is normal', () => {
 test('getQuality when type is audio and quality is normal', () => {
     const paramBuilder = new ParamBuilder();
     const result = paramBuilder.getQuality('audio', 'normal');
-    expect(result).toBe('');
+    expect(result).toBe('-f bestaudio');
 })
 
 test('getCookiesFromBrowser', () => {
