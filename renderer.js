@@ -23,13 +23,13 @@ saveButton.addEventListener('click', () => {
   if (selectedType.value === 'audio') {
     const quality = paramBuilder.getQuality(selectedType.value)
 
-    prefix = `yt-dlp.exe -f bestaudio -x --audio-format mp3 ${quality} "`;
-    suffix = `" ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
+    prefix = `yt-dlp.exe -x --audio-format mp3"`;
+    suffix = `${quality} ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
   } else if (selectedType.value === 'video') {
     const quality = paramBuilder.getQuality(selectedType.value)
 
-    prefix = 'yt-dlp.exe "https://www.youtube.com/watch?v=vrjCRv2vBqM" -f "';
-    suffix = `" -f "${quality}" ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
+    prefix = 'yt-dlp.exe';
+    suffix = `${quality} ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
   }
 
   resultsTextarea.value = getLinks().map(line => `${prefix} ${line} ${suffix}`).join('\n');
