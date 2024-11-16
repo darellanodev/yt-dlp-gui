@@ -31,6 +31,6 @@ saveButton.addEventListener('click', () => {
     suffix = `${quality} ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
   }
 
-  resultsTextarea.value = getLinks().map(line => `${prefix} ${line} ${suffix}`).join('\n');
+  resultsTextarea.value = getLinks().map(line => `${prefix} "${line}" ${suffix}`).join('\n');
 });
 

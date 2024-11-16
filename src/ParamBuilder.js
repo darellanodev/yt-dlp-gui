@@ -3,7 +3,7 @@ export class ParamBuilder {
         if (type === 'audio') {
           return quality === 'high' ? '--audio-quality 0' : '-f bestaudio';
         } else {
-          return quality === 'high' ? 'bestvideo+bestaudio[ext=m4a]' : 'best[ext=mp4]/best';
+          return quality === 'high' ? '"bestvideo+bestaudio[ext=m4a]"' : '"best[ext=mp4]/best"';
         }
       }
     getCookiesFromBrowser () {
