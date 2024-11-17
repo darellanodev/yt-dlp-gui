@@ -6,7 +6,9 @@ const resultsTextarea = document.getElementById('Results');
 const typeRadio = Array.from(document.getElementsByName('type'));
 const qualityRadio = Array.from(document.getElementsByName('quality'));
 
-const getLinks = () => textarea.value.split('\n');
+function getLinks() {
+  return textarea.value.split('\n');
+}
 
 saveButton.addEventListener('click', () => {
   let prefix = '';
