@@ -41,3 +41,9 @@ test('getOutputFolder', () => {
     const result = paramBuilder.getOutputFolder();
     expect(result).toBe('-o "folder1/%%(title)s.%%(ext)s"');
 })
+
+test('getAudioFormat', () => {
+    const paramBuilder = new ParamBuilder();
+    const result = paramBuilder.getAudioFormat();
+    expect(result).toBe('-x --audio-format mp3');
+})

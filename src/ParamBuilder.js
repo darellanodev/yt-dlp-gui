@@ -17,4 +17,8 @@ export class ParamBuilder {
     getOutputFolder () {
       return '-o "folder1/%%(title)s.%%(ext)s"';
     }
+
+    getAudioFormat () {
+      return '-x --audio-format mp3';
+    }
 }
