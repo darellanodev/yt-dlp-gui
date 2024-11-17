@@ -19,21 +19,18 @@ function getQuality() {
 }
 
 saveButton.addEventListener('click', () => {
-  let prefix = '';
-  let suffix = '';
   
   const pb = new ParamBuilder();
   const commonParams = `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
   
+  let suffix = '';
   if (getType() === 'audio') {
-    prefix = 'yt-dlp.exe';
     suffix = `${commonParams} ${pb.audioFormat()}`;
   
   } else if (getType() === 'video') {
-    prefix = 'yt-dlp.exe';
     suffix = `${commonParams}`;
   }
 
-  resultsTextarea.value = getLinks().map(line => `${prefix} "${line}" ${suffix}`).join('\n');
+  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe "${line}" ${suffix}`).join('\n');
 });
 
