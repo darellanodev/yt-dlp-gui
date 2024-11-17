@@ -10,21 +10,26 @@ function getLinks() {
   return textarea.value.split('\n');
 }
 
+function getType() {
+  return typeRadio.find(radio => radio.checked).value;
+}
+
+function getQuality() {
+  return qualityRadio.find(radio => radio.checked).value;
+}
+
 saveButton.addEventListener('click', () => {
   let prefix = '';
   let suffix = '';
-
-  const selectedType = typeRadio.find(radio => radio.checked);
-  const selectedQuality = qualityRadio.find(radio => radio.checked);
   
   const pb = new ParamBuilder();
-  const commonParams = `${pb.quality(selectedType.value, selectedQuality.value)} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
+  const commonParams = `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
   
-  if (selectedType.value === 'audio') {
+  if (getType() === 'audio') {
     prefix = 'yt-dlp.exe';
     suffix = `${commonParams} ${pb.audioFormat()}`;
   
-  } else if (selectedType.value === 'video') {
+  } else if (getType() === 'video') {
     prefix = 'yt-dlp.exe';
     suffix = `${commonParams}`;
   }
