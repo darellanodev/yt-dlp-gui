@@ -12,24 +12,19 @@ saveButton.addEventListener('click', () => {
   let prefix = '';
   let suffix = '';
 
-  const paramBuilder = new ParamBuilder();
-
   const selectedType = typeRadio.find(radio => radio.checked);
   const selectedQuality = qualityRadio.find(radio => radio.checked);
-
-  const cookiesFromBrowser = paramBuilder.getCookiesFromBrowser();
-  const restrictFilenames = paramBuilder.getRestrictFilenames();
-  const getOutputFolder = paramBuilder.getOutputFolder();
-  const quality = paramBuilder.getQuality(selectedType.value, selectedQuality.value);
-  const audioFormat = paramBuilder.getAudioFormat();
+  
+  const pb = new ParamBuilder();
+  const commonParams = `${pb.quality(selectedType.value, selectedQuality.value)} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
   
   if (selectedType.value === 'audio') {
     prefix = 'yt-dlp.exe';
-    suffix = `${quality} ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder} ${audioFormat}`;
+    suffix = `${commonParams} ${pb.audioFormat()}`;
   
   } else if (selectedType.value === 'video') {
     prefix = 'yt-dlp.exe';
-    suffix = `${quality} ${cookiesFromBrowser} ${restrictFilenames} ${getOutputFolder}`;
+    suffix = `${commonParams}`;
   }
 
   resultsTextarea.value = getLinks().map(line => `${prefix} "${line}" ${suffix}`).join('\n');
