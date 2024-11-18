@@ -18,7 +18,7 @@ function getQuality() {
   return qualityRadio.find(radio => radio.checked).value;
 }
 
-function getPrefix() {
+function paramsBeforeURL() {
   const pb = new ParamBuilder();
   if (getType() === 'audio') {
     return pb.audioFormat();
@@ -26,12 +26,13 @@ function getPrefix() {
   return ''
 }
 
-function getParams() {
+function paramsAfterURL() {
   const pb = new ParamBuilder();
   return `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
 }
 
 saveButton.addEventListener('click', () => {
-  resultsTextarea.value = getURLs().map(url => `yt-dlp.exe ${getPrefix()} "${url}" ${getParams()}`).join('\n');
+  resultsTextarea.value = getURLs().map(url => `yt-dlp.exe ${paramsBeforeURL()} "${url}" ${paramsAfterURL()}`).join('\n');
 });
+
 
