@@ -6,7 +6,7 @@ const resultsTextarea = document.getElementById('Results');
 const typeRadio = Array.from(document.getElementsByName('type'));
 const qualityRadio = Array.from(document.getElementsByName('quality'));
 
-function getLinks() {
+function getURLs() {
   return textarea.value.split('\n');
 }
 
@@ -32,7 +32,6 @@ function getParams() {
 }
 
 saveButton.addEventListener('click', () => {
-  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe ${getPrefix()} "${line}" ${getParams()}`).join('\n');
+  resultsTextarea.value = getURLs().map(url => `yt-dlp.exe ${getPrefix()} "${url}" ${getParams()}`).join('\n');
 });
-
 
