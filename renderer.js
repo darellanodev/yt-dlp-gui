@@ -18,16 +18,18 @@ function getQuality() {
   return qualityRadio.find(radio => radio.checked).value;
 }
 
+function getPrefix(pb) {
+  if (getType() === 'audio') {
+    return pb.audioFormat();
+  }
+  return ''
+}
+
 saveButton.addEventListener('click', () => {
   
   const pb = new ParamBuilder();
-  const commonParams = `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
-
-  let suffix = `${commonParams}`;
-  if (getType() === 'audio') {
-    suffix += ` ${pb.audioFormat()}`;
-  }
+  const params = `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
   
-  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe "${line}" ${suffix}`).join('\n');
+  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe ${getPrefix(pb)} "${line}" ${params}`).join('\n');
 });
 
