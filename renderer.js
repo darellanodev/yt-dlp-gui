@@ -18,18 +18,21 @@ function getQuality() {
   return qualityRadio.find(radio => radio.checked).value;
 }
 
-function getPrefix(pb) {
+function getPrefix() {
+  const pb = new ParamBuilder();
   if (getType() === 'audio') {
     return pb.audioFormat();
   }
   return ''
 }
 
-saveButton.addEventListener('click', () => {
-  
+function getParams() {
   const pb = new ParamBuilder();
-  const params = `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
-  
-  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe ${getPrefix(pb)} "${line}" ${params}`).join('\n');
+  return `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
+}
+
+saveButton.addEventListener('click', () => {
+  resultsTextarea.value = getLinks().map(line => `yt-dlp.exe ${getPrefix()} "${line}" ${getParams()}`).join('\n');
 });
+
 
