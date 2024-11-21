@@ -10,11 +10,10 @@
 </head>
 
 <body>
-    <h4>Select the type and the quality</h4>
+    <h4>Configure the parameters</h4>
     <div style="display: flex;">
         <fieldset style="display: inline-block;">
-            <legend>Select the format</legend>
-            <br>
+            <legend>Media type</legend>
             <input type="radio" id="audio" name="type" value="audio" checked>
             <label for="audio">Audio</label>
             <br>
@@ -22,18 +21,18 @@
             <label for="video">Video</label>
         </fieldset>
         <fieldset style="display: inline-block;">
-            <legend>Select the quality</legend>
-            <br>
+            <legend>Quality</legend>
             <input type="radio" id="high" name="quality" value="high">
             <label for="high">High</label>
             <br>
             <input type="radio" id="normal" name="quality" value="normal" checked>
             <label for="normal">Normal</label>
         </fieldset>
+        <fieldset style="display: inline-block;">
+            <legend>Output folder (optional)</legend>
+            <input type="text" id="folder" name="folder" placeholder="insert folder">
+        </fieldset>
     </div>
-
-    <h4>Insert the output folder (optional)</h4>
-    <input type="text" id="folder" name="folder" placeholder="insert folder">
 
     <h4>Insert the URLs</h4>
     <textarea id="myTextarea" rows="5" cols="50"></textarea>
