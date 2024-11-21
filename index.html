@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>yt-dlp-gui</h1>
+    <h4>Select the type and the quality</h4>
     <div style="display: flex;">
         <fieldset style="display: inline-block;">
             <legend>Select the format</legend>
@@ -31,14 +31,16 @@
             <label for="normal">Normal</label>
         </fieldset>
     </div>
-    <h2>Insert your youtube URLs</h2>
-    <textarea id="myTextarea" rows="10" cols="50"></textarea>
-    <br>
+
+    <h4>Insert the output folder (optional)</h4>
     <input type="text" id="folder" name="folder" placeholder="insert folder">
+
+    <h4>Insert the URLs</h4>
+    <textarea id="myTextarea" rows="5" cols="50"></textarea>
     <button id="saveButton">Process</button>
     <br>
-    <h2>Results</h2>
-    <textarea id="Results" rows="10" cols="50"></textarea>
+    <h4>Result of the commands to execute in yt-dlp</h4>
+    <textarea id="Results" rows="5" cols="50"></textarea>
 
 </body>
 
