@@ -1,12 +1,16 @@
 # yt-dlp-gui
 
-This a graphical user interface (GUI) for the yt-dlp program. It is project to learn about Electron.
+This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com/yt-dlp/yt-dlp) application. This project if for learning about Electron.
 
 ## THIS APPLICATION IS IN AN EARLY STAGE OF DEVELOPMENT
 
 ## Github repository
 
 - <https://github.com/darellanodev/yt-dlp-gui>
+
+## Screenshots
+
+![yt-dlp-gui](https://github.com/darellanodev/yt-dlp-gui/blob/main/img_github_readme/screenshot.png?raw=true)
 
 ## Installation
 
@@ -20,4 +24,4 @@ Also you can open the `index.html` with the Live Server VSCode extension or othe
 
 ## Running the tests
 
-Execute `./run_tests.sh` (they are the same)
+Execute `./run_tests.sh`
