@@ -14,8 +14,8 @@ export class ParamBuilder {
         return '--restrict-filenames';
     }
 
-    outputFolder () {
-      return '-o "folder1/%%(title)s.%%(ext)s"';
+    outputFolder (dir) {
+      return `-o "${dir}/%%(title)s.%%(ext)s"`;
     }
 
     audioFormat () {

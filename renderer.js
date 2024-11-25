@@ -5,6 +5,7 @@ const saveButton = document.getElementById('saveButton');
 const resultsTextarea = document.getElementById('Results');
 const typeRadio = Array.from(document.getElementsByName('type'));
 const qualityRadio = Array.from(document.getElementsByName('quality'));
+const folderInput = document.getElementById('folder');
 
 function getURLs() {
   return textarea.value.split('\n');
@@ -28,7 +29,8 @@ function paramsBeforeURL() {
 
 function paramsAfterURL() {
   const pb = new ParamBuilder();
-  return `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder()}` 
+  const folderName = folderInput.value;
+  return `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder(folderName)}` 
 }
 
 saveButton.addEventListener('click', () => {
