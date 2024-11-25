@@ -15,6 +15,9 @@ export class ParamBuilder {
     }
 
     outputFolder (dir) {
+      if (!dir) {
+        return '';
+      }
       return `-o "${dir}/%%(title)s.%%(ext)s"`;
     }
 

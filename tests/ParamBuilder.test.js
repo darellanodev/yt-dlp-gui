@@ -42,6 +42,12 @@ test('getOutputFolder', () => {
     expect(result).toBe('-o "folder1/%%(title)s.%%(ext)s"');
 })
 
+test('getOutputFolder when folder is empty', () => {
+    const paramBuilder = new ParamBuilder();
+    const result = paramBuilder.outputFolder('');
+    expect(result).toBe('');
+})
+
 test('getAudioFormat', () => {
     const paramBuilder = new ParamBuilder();
     const result = paramBuilder.audioFormat();
