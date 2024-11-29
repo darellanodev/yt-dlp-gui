@@ -1,46 +1,22 @@
-import { ParamBuilder } from './src/ParamBuilder.js'
-import { StringUtils } from './src/StringUtils.js'
+import { ParamBuilder } from './src/ParamBuilder.js';
+import { StringUtils } from './src/StringUtils.js';
+import { UIManager } from './src/UIManager.js';
+import { CommandBuilder } from './src/CommandBuilder.js';
 
-const textarea = document.getElementById('myTextarea');
-const saveButton = document.getElementById('saveButton');
-const resultsTextarea = document.getElementById('Results');
-const typeRadio = Array.from(document.getElementsByName('type'));
-const qualityRadio = Array.from(document.getElementsByName('quality'));
-const folderInput = document.getElementById('folder');
+const uiManager = new UIManager();
+const paramBuilder = new ParamBuilder();
+const stringUtils = new StringUtils();
+const commandBuilder = new CommandBuilder(paramBuilder, stringUtils);
 
-function getURLs() {
-  return textarea.value.split('\n');
-}
+uiManager.saveButton.addEventListener('click', () => {
+  const urls = uiManager.getURLs();
+  const type = uiManager.getType();
+  const quality = uiManager.getQuality();
+  const folderName = uiManager.getFolderName();
 
-function getType() {
-  return typeRadio.find(radio => radio.checked).value;
-}
+  const commands = urls.map(url => 
+    commandBuilder.buildCommand(url, type, quality, folderName)
+  );
 
-function getQuality() {
-  return qualityRadio.find(radio => radio.checked).value;
-}
-
-function paramsBeforeURL() {
-  const pb = new ParamBuilder();
-  if (getType() === 'audio') {
-    return pb.audioFormat();
-  }
-  return ''
-}
-
-function paramsAfterURL() {
-  const pb = new ParamBuilder();
-  const folderName = folderInput.value;
-  return `${pb.quality(getType(), getQuality())} ${pb.cookiesFromBrowser()} ${pb.restrictFilenames()} ${pb.outputFolder(folderName)}` 
-}
-
-saveButton.addEventListener('click', () => {
-  const stringUtils = new StringUtils();
-
-  resultsTextarea.value = getURLs().map(url => {
-    let command = `yt-dlp.exe ${paramsBeforeURL()} "${url}" ${paramsAfterURL()}`;
-    return stringUtils.removeDoubleSpace(command); 
-  }).join('\n');
+  uiManager.setResults(commands.join('\n'));
 });
-
-
