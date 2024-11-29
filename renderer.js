@@ -1,4 +1,5 @@
 import { ParamBuilder } from './src/ParamBuilder.js'
+import { StringUtils } from './src/StringUtils.js'
 
 const textarea = document.getElementById('myTextarea');
 const saveButton = document.getElementById('saveButton');
@@ -34,7 +35,12 @@ function paramsAfterURL() {
 }
 
 saveButton.addEventListener('click', () => {
-  resultsTextarea.value = getURLs().map(url => `yt-dlp.exe ${paramsBeforeURL()} "${url}" ${paramsAfterURL()}`).join('\n');
+  const stringUtils = new StringUtils();
+
+  resultsTextarea.value = getURLs().map(url => {
+    let command = `yt-dlp.exe ${paramsBeforeURL()} "${url}" ${paramsAfterURL()}`;
+    return stringUtils.removeDoubleSpace(command); 
+  }).join('\n');
 });
 
 
