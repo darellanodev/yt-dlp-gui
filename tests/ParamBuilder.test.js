@@ -9,13 +9,13 @@ test('getQuality when type is audio and quality is high', () => {
 test('getQuality when type is video and quality is high', () => {
     const paramBuilder = new ParamBuilder();
     const result = paramBuilder.quality('video', 'high');
-    expect(result).toBe('"bestvideo+bestaudio[ext=m4a]"');
+    expect(result).toBe('-f "bestvideo+bestaudio[ext=m4a]"');
 })
 
 test('getQuality when type is video and quality is normal', () => {
     const paramBuilder = new ParamBuilder();
     const result = paramBuilder.quality('video', 'normal');
-    expect(result).toBe('"best[ext=mp4]/best"');
+    expect(result).toBe('-f "best[ext=mp4]/best"');
 })
 
 test('getQuality when type is audio and quality is normal', () => {
