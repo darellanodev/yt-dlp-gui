@@ -1,6 +1,6 @@
 # yt-dlp-gui
 
-This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com/yt-dlp/yt-dlp) application. This project if for learning about Electron.
+This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com/yt-dlp/yt-dlp) application. This project if for learning about Electron + Vite + React + TypeScript.
 
 ## THIS APPLICATION IS IN AN EARLY STAGE OF DEVELOPMENT
 
