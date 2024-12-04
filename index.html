@@ -1,46 +1,16 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>yt-dlp-gui</title>
-
-    <link rel="stylesheet" type="text/css" href="css/simple.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="module" src="renderer.js"></script>
 </head>
 
 <body>
-    <h4>Configure the parameters</h4>
-    <div style="display: flex;">
-        <fieldset style="display: inline-block;">
-            <legend>Media type</legend>
-            <input type="radio" id="video" name="type" value="video" checked>
-            <label for="video">Video</label>
-            <br>
-            <input type="radio" id="audio" name="type" value="audio">
-            <label for="audio">Audio</label>
-        </fieldset>
-        <fieldset style="display: inline-block;">
-            <legend>Quality</legend>
-            <input type="radio" id="normal" name="quality" value="normal" checked>
-            <label for="normal">Normal</label>
-            <br>
-            <input type="radio" id="high" name="quality" value="high">
-            <label for="high">High</label>
-        </fieldset>
-        <fieldset style="display: inline-block;">
-            <legend>Output folder (optional)</legend>
-            <input type="text" id="folder" name="folder" placeholder="insert folder">
-        </fieldset>
-    </div>
-
-    <h4>Insert the URLs</h4>
-    <textarea id="myTextarea" rows="5" cols="50"></textarea>
-    <button id="saveButton">Process</button>
-    <br>
-    <h4>Result of the commands to execute in yt-dlp</h4>
-    <textarea id="Results" rows="5" cols="50"></textarea>
-
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
