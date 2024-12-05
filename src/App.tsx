@@ -1,6 +1,28 @@
 import './App.css'
+import { ParamBuilder } from './utils/ParamBuilder';
+import { StringUtils } from './utils/StringUtils';
+import { UIManager } from './utils/UIManager';
+import { CommandBuilder } from './utils/CommandBuilder';
 
 function App() {
+
+  const handleClick = () => {
+    const uiManager = new UIManager();
+    const paramBuilder = new ParamBuilder();
+    const stringUtils = new StringUtils();
+    const commandBuilder = new CommandBuilder(paramBuilder, stringUtils);
+
+    const urls = uiManager.getURLs();
+    const type = uiManager.getType();
+    const quality = uiManager.getQuality();
+    const folderName = uiManager.getFolderName();
+  
+    const commands = urls.map((url:string) => 
+      commandBuilder.buildCommand(url, type, quality, folderName)
+    );
+  
+    uiManager.setResults(commands.join('\n'));
+  }
 
   return (
     <>
@@ -30,7 +52,7 @@ function App() {
 
       <h4>Insert the URLs</h4>
       <textarea id="myTextarea" rows={5} cols={50} />
-      <button id="saveButton">Process</button>
+      <button id="saveButton" onClick={handleClick}>Process</button>
       <br />
       <h4>Result of the commands to execute in yt-dlp</h4>
       <textarea id="Results" rows={5} cols={50} />
