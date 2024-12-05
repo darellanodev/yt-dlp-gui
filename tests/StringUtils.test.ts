@@ -1,4 +1,4 @@
-import { StringUtils } from '../src/StringUtils';
+import { StringUtils } from '../src/utils/StringUtils';
 
 test('getQuality when type is audio and quality is high', () => {
     const stringUtils = new StringUtils();

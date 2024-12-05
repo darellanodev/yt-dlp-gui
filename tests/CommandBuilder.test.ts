@@ -1,6 +1,6 @@
-import { CommandBuilder } from '../src/CommandBuilder';
-import { ParamBuilder } from '../src/ParamBuilder';
-import { StringUtils } from '../src/StringUtils';
+import { CommandBuilder } from '../src/utils/CommandBuilder';
+import { ParamBuilder } from '../src/utils/ParamBuilder';
+import { StringUtils } from '../src/utils/StringUtils';
 
 test('getQuality when type is audio and quality is high', () => {
 

@@ -1,4 +1,4 @@
-import { ParamBuilder } from '../src/ParamBuilder';
+import { ParamBuilder } from '../src/utils/ParamBuilder';
 
 test('getQuality when type is audio and quality is high', () => {
     const paramBuilder = new ParamBuilder();
