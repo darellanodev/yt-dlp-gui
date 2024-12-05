@@ -1,5 +1,5 @@
 export class ParamBuilder {
-    quality (type, quality) {
+    quality (type: string, quality: string) {
         if (type === 'audio') {
           return quality === 'high' ? '--audio-quality 0' : '-f bestaudio';
         } else {
@@ -14,7 +14,7 @@ export class ParamBuilder {
         return '--restrict-filenames';
     }
 
-    outputFolder (dir) {
+    outputFolder (dir: string) {
       if (!dir) {
         return '';
       }
