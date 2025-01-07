@@ -14,6 +14,6 @@ test('getQuality when type is audio and quality is high', () => {
     '',
   )
   expect(result).toBe(
-    'yt-dlp.exe "exampleURL" -f "best[ext=mp4]/best" --cookies-from-browser firefox --restrict-filenames',
+    'yt-dlp.exe "exampleURL" -f "best[ext=mp4]/best[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
   )
 })

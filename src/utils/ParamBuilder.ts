@@ -5,7 +5,7 @@ export class ParamBuilder {
     } else {
       return quality === 'high'
         ? '-f "bestvideo+bestaudio[ext=m4a]"'
-        : '-f "best[ext=mp4]/best"'
+        : '-f "best[ext=mp4]/best[ext=aac]"'
     }
   }
   cookiesFromBrowser() {
