@@ -2,7 +2,7 @@ import { CommandBuilder } from '../src/utils/CommandBuilder'
 import { ParamBuilder } from '../src/utils/ParamBuilder'
 import { StringUtils } from '../src/utils/StringUtils'
 
-test('getQuality when type is audio and quality is high', () => {
+test('getQuality when type is video and quality is normal', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
