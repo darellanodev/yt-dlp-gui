@@ -56,8 +56,8 @@ function createWindow() {
 
 function openAboutWindow() {
   const aboutWindow = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 400,
+    height: 300,
     title: 'About yt-dlp-gui',
     resizable: false,
     minimizable: false,
