@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -6,15 +6,6 @@ import path from 'node:path'
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// The built directory structure
-//
-// ├─┬─┬ dist
-// │ │ └── index.html
-// │ │
-// │ ├─┬ dist-electron
-// │ │ ├── main.js
-// │ │ └── preload.mjs
-// │
 process.env.APP_ROOT = path.join(__dirname, '..')
 
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
@@ -22,7 +13,9 @@ export const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron')
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
 
-process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 'public') : RENDERER_DIST
+process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
+  ? path.join(process.env.APP_ROOT, 'public')
+  : RENDERER_DIST
 
 let win: BrowserWindow | null
 
@@ -36,7 +29,7 @@ function createWindow() {
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString())
+    win?.webContents.send('main-process-message', new Date().toLocaleString())
   })
 
   if (VITE_DEV_SERVER_URL) {
@@ -45,6 +38,60 @@ function createWindow() {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(RENDERER_DIST, 'index.html'))
   }
+
+  const menu = Menu.buildFromTemplate([
+    {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'About',
+          click: () => openAboutWindow(),
+        },
+      ],
+    },
+  ])
+
+  Menu.setApplicationMenu(menu)
+}
+
+function openAboutWindow() {
+  const aboutWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    title: 'About yt-dlp-gui',
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    modal: true,
+    parent: win!,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  })
+
+  aboutWindow.loadURL(
+    'data:text/html;charset=utf-8,' +
+      encodeURIComponent(`
+    <html>
+    <head>
+      <title>About yt-dlp-gui</title>
+      <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h2 { margin-bottom: 10px; }
+        p { margin: 5px 0; }
+        a { color: #007bff; text-decoration: none; }
+      </style>
+    </head>
+    <body>
+      <h2>yt-dlp-gui</h2>
+      <p>Version: 0.1beta</p>
+      <p>This is a simple graphical user interface (GUI) for the yt-dlp application for learning purposes.</p>
+      <p>Author: darellanodev</p>
+      <p><a href="https://github.com/darellanodev/yt-dlp-gui" target="_blank">GitHub Repository</a></p>
+    </body>
+    </html>
+  `),
+  )
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -66,4 +113,3 @@ app.on('activate', () => {
 })
 
 app.whenReady().then(createWindow)
-
