@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, shell } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -56,8 +56,8 @@ function createWindow() {
 
 function openAboutWindow() {
   const aboutWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
+    width: 600,
+    height: 400,
     title: 'About yt-dlp-gui',
     resizable: false,
     minimizable: false,
@@ -65,7 +65,9 @@ function openAboutWindow() {
     modal: true,
     parent: win!,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.mjs'),
     },
   })
 
@@ -87,11 +89,21 @@ function openAboutWindow() {
       <p>Version: 0.1beta</p>
       <p>This is a simple graphical user interface (GUI) for the yt-dlp application for learning purposes.</p>
       <p>Author: darellanodev</p>
-      <p><a href="https://github.com/darellanodev/yt-dlp-gui" target="_blank">GitHub Repository</a></p>
+      <p><a id="github-link" href="https://github.com/darellanodev/yt-dlp-gui">GitHub Repository</a></p>
     </body>
     </html>
   `),
   )
+
+  aboutWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url)
+    return { action: 'deny' }
+  })
+
+  aboutWindow.webContents.on('will-navigate', (event, url) => {
+    event.preventDefault()
+    shell.openExternal(url)
+  })
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
