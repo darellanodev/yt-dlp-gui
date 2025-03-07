@@ -24,6 +24,36 @@ function App() {
 
   return (
     <div className="p-4 bg-gray-900 text-white">
+      <h4 className="text-lg font-bold mb-4">Select the type of process</h4>
+      <div className="flex flex-center justify-center">
+        <fieldset className="bg-gray-500 w-full p-4 mb-4 flex flex-center justify-center gap-4">
+          <div>
+            <input
+              type="radio"
+              id="singlevideo"
+              name="process"
+              value="singlevideo"
+              defaultChecked
+            />
+            <label htmlFor="singlevideo" className="ml-2">
+              Single video
+            </label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="playlist"
+              name="process"
+              value="playlist"
+              defaultChecked
+            />
+            <label htmlFor="playlist" className="ml-2">
+              Playlist
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
       <h4 className="text-lg font-bold mb-4">Configure the parameters</h4>
       <div className="flex">
         <fieldset className="bg-yellow-500 w-1/3 mr-4 p-4">

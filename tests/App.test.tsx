@@ -15,4 +15,11 @@ describe('App component', () => {
     expect(screen.getByLabelText('Video')).toBeInTheDocument()
     expect(screen.getByLabelText('Audio')).toBeInTheDocument()
   })
+
+  it('renders the single video and the playlist process options', () => {
+    render(<App />)
+    expect(screen.getByText('Select the type of process')).toBeInTheDocument()
+    expect(screen.getByLabelText('Single video')).toBeInTheDocument()
+    expect(screen.getByLabelText('Playlist')).toBeInTheDocument()
+  })
 })
