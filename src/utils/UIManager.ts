@@ -37,7 +37,7 @@ export class UIManager {
     return this.folderInput.value
   }
 
-  setResults(value: string) {
-    this.resultsTextarea.value = value
+  addResults(value: string) {
+    this.resultsTextarea.value += value + '\n'
   }
 }

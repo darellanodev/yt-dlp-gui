@@ -17,7 +17,7 @@ function App() {
 
     const command = commandBuilder.buildCommand(url, type, quality, folderName)
 
-    uiManager.setResults(command)
+    uiManager.addResults(command)
   }
 
   return (
