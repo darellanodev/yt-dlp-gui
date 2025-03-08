@@ -1,12 +1,12 @@
 export class UIManager {
-  private readonly textarea: HTMLTextAreaElement
+  private readonly urlInput: HTMLInputElement
   private readonly resultsTextarea: HTMLTextAreaElement
   private readonly typeRadio: HTMLInputElement[]
   private readonly qualityRadio: HTMLInputElement[]
   private readonly folderInput: HTMLInputElement
 
   constructor() {
-    this.textarea = document.getElementById('myTextarea') as HTMLTextAreaElement
+    this.urlInput = document.getElementById('url') as HTMLInputElement
     this.resultsTextarea = document.getElementById(
       'Results',
     ) as HTMLTextAreaElement
@@ -19,8 +19,8 @@ export class UIManager {
     this.folderInput = document.getElementById('folder') as HTMLInputElement
   }
 
-  getURLs() {
-    return this.textarea.value.split('\n')
+  getURL() {
+    return this.urlInput.value
   }
 
   getType() {

@@ -10,16 +10,14 @@ function App() {
     const stringUtils = new StringUtils()
     const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-    const urls = uiManager.getURLs()
+    const url = uiManager.getURL()
     const type = uiManager.getType()
     const quality = uiManager.getQuality()
     const folderName = uiManager.getFolderName()
 
-    const commands = urls.map((url: string) =>
-      commandBuilder.buildCommand(url, type, quality, folderName),
-    )
+    const command = commandBuilder.buildCommand(url, type, quality, folderName)
 
-    uiManager.setResults(commands.join('\n'))
+    uiManager.setResults(command)
   }
 
   return (
@@ -28,15 +26,9 @@ function App() {
       <div className="flex flex-center justify-center">
         <fieldset className="bg-gray-500 w-full p-4 mb-4 flex flex-center justify-center gap-4">
           <div>
-            <input
-              type="radio"
-              id="singlevideo"
-              name="process"
-              value="singlevideo"
-              defaultChecked
-            />
-            <label htmlFor="singlevideo" className="ml-2">
-              Single video
+            <input type="radio" id="single" name="process" value="single" />
+            <label htmlFor="single" className="ml-2">
+              Single
             </label>
           </div>
           <div>
@@ -108,18 +100,13 @@ function App() {
         </fieldset>
       </div>
 
-      <h4 className="text-lg font-bold mt-8 mb-4">Insert the URLs</h4>
-      <textarea
-        id="myTextarea"
-        rows={5}
-        cols={50}
-        className="w-full p-4 bg-blue-900"
-      />
+      <h4 className="text-lg font-bold mt-8 mb-4">Insert the URL</h4>
+      <input type="text" id="url" className="w-full p-4 bg-blue-900" />
       <button
         id="saveButton"
         onClick={handleClick}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-        Process
+        Add it
       </button>
       <br />
       <h4 className="text-lg font-bold mt-8 mb-4">
