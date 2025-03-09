@@ -26,19 +26,19 @@ function App() {
       <div className="flex flex-center justify-center">
         <fieldset className="bg-gray-500 w-full p-4 mb-4 flex flex-center justify-center gap-4">
           <div>
-            <input type="radio" id="single" name="process" value="single" />
+            <input
+              type="radio"
+              id="single"
+              name="process"
+              value="single"
+              defaultChecked
+            />
             <label htmlFor="single" className="ml-2">
               Single
             </label>
           </div>
           <div>
-            <input
-              type="radio"
-              id="playlist"
-              name="process"
-              value="playlist"
-              defaultChecked
-            />
+            <input type="radio" id="playlist" name="process" value="playlist" />
             <label htmlFor="playlist" className="ml-2">
               Playlist
             </label>
