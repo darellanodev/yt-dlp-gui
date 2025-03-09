@@ -53,3 +53,9 @@ test('getAudioFormat', () => {
   const result = paramBuilder.audioFormat()
   expect(result).toBe('-x --audio-format mp3')
 })
+
+test('processPlaylist, when called, get the correct parameter', () => {
+  const paramBuilder = new ParamBuilder()
+  const result = paramBuilder.processPlaylist()
+  expect(result).toBe('--yes-playlist')
+})

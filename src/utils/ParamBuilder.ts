@@ -26,4 +26,8 @@ export class ParamBuilder {
   audioFormat() {
     return '-x --audio-format mp3'
   }
+
+  processPlaylist() {
+    return '--yes-playlist'
+  }
 }
