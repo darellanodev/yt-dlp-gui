@@ -2,7 +2,7 @@ import { CommandBuilder } from '../src/utils/CommandBuilder'
 import { ParamBuilder } from '../src/utils/ParamBuilder'
 import { StringUtils } from '../src/utils/StringUtils'
 
-test('getQuality when type is video and quality is normal', () => {
+test('buildCommand, when is a single video with normal quality, return the correct command output', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
@@ -19,7 +19,7 @@ test('getQuality when type is video and quality is normal', () => {
   )
 })
 
-test('getQuality when type is video and quality is high', () => {
+test('buildCommand, when is a single video with high quality, return the correct command output', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
