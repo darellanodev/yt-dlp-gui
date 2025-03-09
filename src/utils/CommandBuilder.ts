@@ -21,7 +21,13 @@ export class CommandBuilder {
     return `${this.paramBuilder.quality(type, quality)} ${this.paramBuilder.cookiesFromBrowser()} ${this.paramBuilder.restrictFilenames()} ${this.paramBuilder.outputFolder(folderName)}`
   }
 
-  buildCommand(url: string, type: string, quality: string, folderName: string) {
+  buildCommand(
+    url: string,
+    process: string,
+    type: string,
+    quality: string,
+    folderName: string,
+  ) {
     const command: string = `yt-dlp.exe ${this.paramsBeforeURL(type)} "${url}" ${this.paramsAfterURL(type, quality, folderName)}`
     return this.stringUtils.removeDoubleSpace(command).trim()
   }

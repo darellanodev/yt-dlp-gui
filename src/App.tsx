@@ -10,12 +10,19 @@ function App() {
     const stringUtils = new StringUtils()
     const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
+    const process = uiManager.getProcess()
     const url = uiManager.getURL()
     const type = uiManager.getType()
     const quality = uiManager.getQuality()
     const folderName = uiManager.getFolderName()
 
-    const command = commandBuilder.buildCommand(url, type, quality, folderName)
+    const command = commandBuilder.buildCommand(
+      url,
+      process,
+      type,
+      quality,
+      folderName,
+    )
 
     uiManager.addResults(command)
   }

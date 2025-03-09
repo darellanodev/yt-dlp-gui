@@ -9,6 +9,7 @@ test('getQuality when type is video and quality is normal', () => {
 
   const result = commandBuilder.buildCommand(
     'exampleURL',
+    'single',
     'video',
     'normal',
     '',
@@ -23,7 +24,13 @@ test('getQuality when type is video and quality is high', () => {
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-  const result = commandBuilder.buildCommand('exampleURL', 'video', 'high', '')
+  const result = commandBuilder.buildCommand(
+    'exampleURL',
+    'single',
+    'video',
+    'high',
+    '',
+  )
   expect(result).toBe(
     'yt-dlp.exe "exampleURL" -f "bestvideo[ext=mp4]/bestaudio[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
   )
