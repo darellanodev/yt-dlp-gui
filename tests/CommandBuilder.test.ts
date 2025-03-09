@@ -35,3 +35,20 @@ test('buildCommand, when is a single video with high quality, return the correct
     'yt-dlp.exe "exampleURL" -f "bestvideo[ext=mp4]/bestaudio[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
   )
 })
+
+test('buildCommand, when is a playlist with video format and normal quality, return the correct command output', () => {
+  const paramBuilder = new ParamBuilder()
+  const stringUtils = new StringUtils()
+  const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
+
+  const result = commandBuilder.buildCommand(
+    'exampleURL',
+    'playlist',
+    'video',
+    'high',
+    '',
+  )
+  expect(result).toBe(
+    'yt-dlp.exe --yes-playlist "exampleURL" -f "bestvideo[ext=mp4]/bestaudio[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
+  )
+})

@@ -10,11 +10,13 @@ export class CommandBuilder {
     this.stringUtils = stringUtils
   }
 
-  paramsBeforeURL(type: string) {
+  paramsBeforeURL(process: string, type: string) {
+    let result = process === 'playlist' ? '--yes-playlist' : ''
+
     if (type === 'audio') {
-      return this.paramBuilder.audioFormat()
+      result += ' ' + this.paramBuilder.audioFormat()
     }
-    return ''
+    return result
   }
 
   paramsAfterURL(type: string, quality: string, folderName: string) {
@@ -28,7 +30,7 @@ export class CommandBuilder {
     quality: string,
     folderName: string,
   ) {
-    const command: string = `yt-dlp.exe ${this.paramsBeforeURL(type)} "${url}" ${this.paramsAfterURL(type, quality, folderName)}`
+    const command: string = `yt-dlp.exe ${this.paramsBeforeURL(process, type)} "${url}" ${this.paramsAfterURL(type, quality, folderName)}`
     return this.stringUtils.removeDoubleSpace(command).trim()
   }
 }
