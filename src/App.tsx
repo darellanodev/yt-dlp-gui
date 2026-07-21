@@ -30,10 +30,13 @@ function App() {
   }
 
   return (
-    <div className="p-4 bg-gray-900 text-white">
-      <h4 className="text-lg font-bold mb-4">Select the type of process</h4>
+    <div className="p-4 bg-brand-canvas text-brand-ink">
+      <h4 className="text-eyebrow uppercase tracking-[2.52px] text-brand-primary mb-4 font-sans">
+        Select the type of process
+      </h4>
+      <div className="border-b border-hairline mb-4" />
       <div className="flex flex-center justify-center">
-        <fieldset className="bg-gray-500 w-full p-4 mb-4 flex flex-center justify-center gap-4">
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-full p-6 mb-4 flex flex-center justify-center gap-4">
           <div>
             <input
               type="radio"
@@ -63,10 +66,13 @@ function App() {
         </fieldset>
       </div>
 
-      <h4 className="text-lg font-bold mb-4">Configure the parameters</h4>
+      <h4 className="text-eyebrow uppercase tracking-[2.52px] text-brand-primary mb-4 font-sans">
+        Configure the parameters
+      </h4>
+      <div className="border-b border-hairline mb-4" />
       <div className="flex">
-        <fieldset className="bg-yellow-500 w-1/3 mr-4 p-4">
-          <legend className="font-bold bg-yellow-500 pl-2 pr-2">
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 mr-4 p-6">
+          <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">
             Media type
           </legend>
           <input
@@ -93,8 +99,8 @@ function App() {
             Audio
           </label>
         </fieldset>
-        <fieldset className="bg-blue-500 w-1/3 mr-4 p-4">
-          <legend className="font-bold bg-blue-500 pl-2 pr-2">Quality</legend>
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 mr-4 p-6">
+          <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">Quality</legend>
           <input
             type="radio"
             id="normal"
@@ -119,8 +125,8 @@ function App() {
             High
           </label>
         </fieldset>
-        <fieldset className="bg-green-500 w-1/3 p-4">
-          <legend className="font-bold bg-green-500 pl-2 pr-2">
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 p-6">
+          <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">
             Output folder (optional)
           </legend>
           <input
@@ -128,36 +134,40 @@ function App() {
             id="folder"
             name="folder"
             placeholder="insert folder"
-            className="w-full p-2 bg-green-900"
+            className="w-full px-4 py-3 bg-brand-canvas-soft border border-hairline rounded-button text-brand-ink font-body-sm"
             value={folderName}
             onChange={(e) => setFolderName(e.target.value)}
           />
         </fieldset>
       </div>
 
-      <h4 className="text-lg font-bold mt-8 mb-4">Insert the URL</h4>
+      <h4 className="text-eyebrow uppercase tracking-[2.52px] text-brand-primary mt-8 mb-4 font-sans">
+        Insert the URL
+      </h4>
+      <div className="border-b border-hairline mb-4" />
       <input
         type="text"
         id="url"
-        className="w-full p-4 bg-blue-900"
+        className="w-full px-4 py-3 bg-brand-canvas-soft border border-hairline rounded-button text-brand-ink font-body-sm"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
       <button
         id="saveButton"
         onClick={handleClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+        className="bg-brand-primary text-brand-on-primary hover:opacity-90 font-button-md py-3 px-4 rounded-button mt-4">
         Add it
       </button>
       <br />
-      <h4 className="text-lg font-bold mt-8 mb-4">
+      <h4 className="text-eyebrow uppercase tracking-[2.52px] text-brand-primary mt-8 mb-4 font-sans">
         Result of the commands to execute in yt-dlp
       </h4>
+      <div className="border-b border-hairline mb-4" />
       <textarea
         id="Results"
         rows={5}
         cols={50}
-        className="w-full p-4 bg-blue-900"
+        className="w-full px-4 py-3 bg-brand-canvas-soft border border-hairline rounded-card font-mono text-brand-ink min-h-[120px]"
         value={results}
         readOnly
       />
