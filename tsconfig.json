@@ -24,8 +24,7 @@
     "esModuleInterop": true,
   },
   "include": [
-    "src",
-    "electron"
+    "src"
   ],
   "references": [
     {

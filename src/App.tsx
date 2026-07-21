@@ -1,30 +1,32 @@
 import { ParamBuilder } from './utils/ParamBuilder'
 import { StringUtils } from './utils/StringUtils'
-import { UIManager } from './utils/UIManager'
 import { CommandBuilder } from './utils/CommandBuilder'
+import { useAppStore } from './store/useAppStore'
 
 function App() {
+  const {
+    url,
+    process,
+    type,
+    quality,
+    folderName,
+    results,
+    setUrl,
+    setProcess,
+    setType,
+    setQuality,
+    setFolderName,
+    addResult,
+  } = useAppStore()
+
   const handleClick = () => {
-    const uiManager = new UIManager()
     const paramBuilder = new ParamBuilder()
     const stringUtils = new StringUtils()
     const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-    const process = uiManager.getProcess()
-    const url = uiManager.getURL()
-    const type = uiManager.getType()
-    const quality = uiManager.getQuality()
-    const folderName = uiManager.getFolderName()
+    const command = commandBuilder.buildCommand(url, process, type, quality, folderName)
 
-    const command = commandBuilder.buildCommand(
-      url,
-      process,
-      type,
-      quality,
-      folderName,
-    )
-
-    uiManager.addResults(command)
+    addResult(command)
   }
 
   return (
@@ -38,14 +40,22 @@ function App() {
               id="single"
               name="process"
               value="single"
-              defaultChecked
+              checked={process === 'single'}
+              onChange={() => setProcess('single')}
             />
             <label htmlFor="single" className="ml-2">
               Single
             </label>
           </div>
           <div>
-            <input type="radio" id="playlist" name="process" value="playlist" />
+            <input
+              type="radio"
+              id="playlist"
+              name="process"
+              value="playlist"
+              checked={process === 'playlist'}
+              onChange={() => setProcess('playlist')}
+            />
             <label htmlFor="playlist" className="ml-2">
               Playlist
             </label>
@@ -64,13 +74,21 @@ function App() {
             id="video"
             name="type"
             value="video"
-            defaultChecked
+            checked={type === 'video'}
+            onChange={() => setType('video')}
           />
           <label htmlFor="video" className="ml-2">
             Video
           </label>
           <br />
-          <input type="radio" id="audio" name="type" value="audio" />
+          <input
+            type="radio"
+            id="audio"
+            name="type"
+            value="audio"
+            checked={type === 'audio'}
+            onChange={() => setType('audio')}
+          />
           <label htmlFor="audio" className="ml-2">
             Audio
           </label>
@@ -82,13 +100,21 @@ function App() {
             id="normal"
             name="quality"
             value="normal"
-            defaultChecked
+            checked={quality === 'normal'}
+            onChange={() => setQuality('normal')}
           />
           <label htmlFor="normal" className="ml-2">
             Normal
           </label>
           <br />
-          <input type="radio" id="high" name="quality" value="high" />
+          <input
+            type="radio"
+            id="high"
+            name="quality"
+            value="high"
+            checked={quality === 'high'}
+            onChange={() => setQuality('high')}
+          />
           <label htmlFor="high" className="ml-2">
             High
           </label>
@@ -103,12 +129,20 @@ function App() {
             name="folder"
             placeholder="insert folder"
             className="w-full p-2 bg-green-900"
+            value={folderName}
+            onChange={(e) => setFolderName(e.target.value)}
           />
         </fieldset>
       </div>
 
       <h4 className="text-lg font-bold mt-8 mb-4">Insert the URL</h4>
-      <input type="text" id="url" className="w-full p-4 bg-blue-900" />
+      <input
+        type="text"
+        id="url"
+        className="w-full p-4 bg-blue-900"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
       <button
         id="saveButton"
         onClick={handleClick}
@@ -124,6 +158,8 @@ function App() {
         rows={5}
         cols={50}
         className="w-full p-4 bg-blue-900"
+        value={results}
+        readOnly
       />
     </div>
   )
