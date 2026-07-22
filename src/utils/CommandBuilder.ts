@@ -11,16 +11,43 @@ export class CommandBuilder {
   }
 
   paramsBeforeURL(process: string, type: string) {
-    let result = process === 'playlist' ? '--yes-playlist' : ''
+    const parts: string[] = []
+
+    if (type === 'video') {
+      parts.push(this.paramBuilder.jsRuntimes())
+    }
 
     if (type === 'audio') {
-      result += ' ' + this.paramBuilder.audioFormat()
+      parts.push(this.paramBuilder.audioFormat())
     }
-    return result
+
+    if (process === 'playlist' && type === 'audio') {
+      parts.push('--yes-playlist')
+    }
+
+    return parts.join(' ')
   }
 
-  paramsAfterURL(type: string, quality: string, folderName: string) {
-    return `${this.paramBuilder.quality(type, quality)} ${this.paramBuilder.cookiesFromBrowser()} ${this.paramBuilder.restrictFilenames()} ${this.paramBuilder.outputFolder(folderName)}`
+  paramsAfterURL(type: string, quality: string, cookies: boolean, process: string) {
+    const parts: string[] = []
+
+    if (type === 'video') {
+      parts.push(this.paramBuilder.quality(type, quality))
+      parts.push(this.paramBuilder.mergeOutputFormat())
+    }
+
+    const cookiesFlag = this.paramBuilder.cookiesFromBrowser(cookies)
+    if (cookiesFlag) {
+      parts.push(cookiesFlag)
+    }
+
+    parts.push(this.paramBuilder.restrictFilenames())
+
+    if (process === 'playlist') {
+      parts.push(this.paramBuilder.playlistOutputTemplate(type))
+    }
+
+    return parts.join(' ')
   }
 
   buildCommand(
@@ -28,9 +55,11 @@ export class CommandBuilder {
     process: string,
     type: string,
     quality: string,
-    folderName: string,
+    cookies: boolean,
   ) {
-    const command: string = `yt-dlp.exe ${this.paramsBeforeURL(process, type)} "${url}" ${this.paramsAfterURL(type, quality, folderName)}`
+    const before = this.paramsBeforeURL(process, type)
+    const after = this.paramsAfterURL(type, quality, cookies, process)
+    const command = `yt-dlp ${before} "${url}" ${after}`
     return this.stringUtils.removeDoubleSpace(command).trim()
   }
 }

@@ -9,13 +9,13 @@ function App() {
     process,
     type,
     quality,
-    folderName,
+    cookies,
     results,
     setUrl,
     setProcess,
     setType,
     setQuality,
-    setFolderName,
+    setCookies,
     addResult,
   } = useAppStore()
 
@@ -24,7 +24,7 @@ function App() {
     const stringUtils = new StringUtils()
     const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-    const command = commandBuilder.buildCommand(url, process, type, quality, folderName)
+    const command = commandBuilder.buildCommand(url, process, type, quality, cookies)
 
     addResult(command)
   }
@@ -70,8 +70,8 @@ function App() {
         Configure the parameters
       </h4>
       <div className="border-b border-hairline mb-4" />
-      <div className="flex">
-        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 mr-4 p-6">
+      <div className="flex gap-4">
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 p-6">
           <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">
             Media type
           </legend>
@@ -99,45 +99,59 @@ function App() {
             Audio
           </label>
         </fieldset>
-        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 mr-4 p-6">
+        <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 p-6">
           <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">Quality</legend>
           <input
             type="radio"
-            id="normal"
+            id="q1080"
             name="quality"
-            value="normal"
-            checked={quality === 'normal'}
-            onChange={() => setQuality('normal')}
+            value="1080"
+            checked={quality === '1080'}
+            onChange={() => setQuality('1080')}
           />
-          <label htmlFor="normal" className="ml-2">
-            Normal
+          <label htmlFor="q1080" className="ml-2">
+            1080p
           </label>
           <br />
           <input
             type="radio"
-            id="high"
+            id="q720"
             name="quality"
-            value="high"
-            checked={quality === 'high'}
-            onChange={() => setQuality('high')}
+            value="720"
+            checked={quality === '720'}
+            onChange={() => setQuality('720')}
           />
-          <label htmlFor="high" className="ml-2">
-            High
+          <label htmlFor="q720" className="ml-2">
+            720p
+          </label>
+          <br />
+          <input
+            type="radio"
+            id="q480"
+            name="quality"
+            value="480"
+            checked={quality === '480'}
+            onChange={() => setQuality('480')}
+          />
+          <label htmlFor="q480" className="ml-2">
+            480p
           </label>
         </fieldset>
         <fieldset className="bg-brand-canvas border border-hairline rounded-card w-1/3 p-6">
           <legend className="font-sans font-semibold text-brand-ink pl-2 pr-2">
-            Output folder (optional)
+            Options
           </legend>
-          <input
-            type="text"
-            id="folder"
-            name="folder"
-            placeholder="insert folder"
-            className="w-full px-4 py-3 bg-brand-canvas-soft border border-hairline rounded-button text-brand-ink font-body-sm"
-            value={folderName}
-            onChange={(e) => setFolderName(e.target.value)}
-          />
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="cookies"
+              checked={cookies}
+              onChange={(e) => setCookies(e.target.checked)}
+            />
+            <label htmlFor="cookies" className="ml-2">
+              Cookies from browser
+            </label>
+          </div>
         </fieldset>
       </div>
 

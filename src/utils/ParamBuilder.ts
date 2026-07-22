@@ -2,32 +2,35 @@ export class ParamBuilder {
   quality(type: string, quality: string) {
     if (type === 'audio') {
       return quality === 'high' ? '--audio-quality 0' : '-f bestaudio'
-    } else {
-      return quality === 'high'
-        ? '-f "bestvideo[ext=mp4]/bestaudio[ext=aac]"'
-        : '-f "best[ext=mp4]/best[ext=aac]"'
     }
+    const height = quality
+    return `-f "bv*[vcodec^=avc][height<=${height}]+ba[acodec=aac]/b[ext=mp4][height<=${height}]/b[height<=${height}]"`
   }
-  cookiesFromBrowser() {
-    return '--cookies-from-browser firefox'
+
+  jsRuntimes() {
+    return '--js-runtimes deno'
+  }
+
+  mergeOutputFormat() {
+    return '--merge-output-format mp4'
+  }
+
+  cookiesFromBrowser(enabled: boolean) {
+    return enabled ? '--cookies-from-browser firefox' : ''
   }
 
   restrictFilenames() {
     return '--restrict-filenames'
   }
 
-  outputFolder(dir: string) {
-    if (!dir) {
-      return ''
+  playlistOutputTemplate(type: string) {
+    if (type === 'video') {
+      return '-o "%%(playlist_title)s/%%(playlist_index)03d - %%(title)s.%%(ext)s"'
     }
-    return `-o "${dir}/%%(title)s.%%(ext)s"`
+    return '-o "%%(playlist_title)s/%%(playlist_index)s - %%(title)s.%%(ext)s"'
   }
 
   audioFormat() {
     return '-x --audio-format mp3'
-  }
-
-  processPlaylist() {
-    return '--yes-playlist'
   }
 }

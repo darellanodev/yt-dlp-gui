@@ -1,4 +1,4 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Zustand store manages all form state
 The application SHALL use a Zustand store (`useAppStore`) as the single source of truth for all form fields: URL, process type, media type, quality, cookies, and command results.
@@ -45,42 +45,12 @@ When the user clicks the "Add it" button, the system SHALL read all form values 
 - **WHEN** a command is successfully generated
 - **THEN** the store's `results` field SHALL be updated with the new command appended on a new line
 
-### Requirement: UIManager.ts is removed
-The `UIManager` class SHALL be deleted. No code SHALL reference `document.getElementById()` or `document.getElementsByName()` for reading form state.
+## REMOVED Requirements
 
-#### Scenario: No direct DOM reads for state
-- **WHEN** the codebase is inspected
-- **THEN** there SHALL be no `document.getElementById()` or `document.getElementsByName()` calls in `src/App.tsx` or any store files
+### Requirement: User types folder name
+**Reason**: The output folder input has been removed from the UI. Playlist output is handled by yt-dlp's `%%(playlist_title)s` variable.
+**Migration**: None needed. The `folderName` field is removed from the store and UI.
 
-### Requirement: Electron is removed
-All Electron-related files, configurations, and dependencies SHALL be removed from the project.
-
-#### Scenario: No Electron dependencies
-- **WHEN** `package.json` is inspected
-- **THEN** it SHALL NOT contain `electron`, `electron-builder`, `vite-plugin-electron`, or `vite-plugin-electron-renderer` in dependencies or devDependencies
-
-#### Scenario: No Electron files
-- **WHEN** the project root is inspected
-- **THEN** there SHALL be no `electron/` directory, `electron-builder.json5`, or `dist-electron/` directory
-
-#### Scenario: Vite config has no Electron plugin
-- **WHEN** `vite.config.ts` is inspected
-- **THEN** it SHALL only import and use `@vitejs/plugin-react`, with no Electron-related imports or plugins
-
-### Requirement: Dead Jest configuration is removed
-Jest configuration files and dependencies SHALL be removed since the test suite uses Vitest.
-
-#### Scenario: No Jest files
-- **WHEN** the project root is inspected
-- **THEN** there SHALL be no `jest.config.ts`, `jest.setup.ts`, or `.babelrc` files
-
-#### Scenario: No Jest dependencies
-- **WHEN** `package.json` is inspected
-- **THEN** it SHALL NOT contain `jest`, `jest-environment-jsdom`, `ts-jest`, or `@types/jest` in devDependencies
-
-### Requirement: Existing tests remain functional
-All existing test files in `tests/` SHALL continue to pass without modification.
-
-#### Scenario: Vitest runs all tests successfully
-- **WHEN** `pnpm run test` is executed
-- **THEN** all existing test files (`App.test.tsx`, `CommandBuilder.test.ts`, `ParamBuilder.test.ts`, `StringUtils.test.ts`) SHALL pass
+### Requirement: Quality uses normal/high values
+**Reason**: Quality is now resolution-based (1080p, 720p, 480p) instead of vague normal/high labels.
+**Migration**: Store `quality` field changes from `'normal'|'high'` to `'1080'|'720'|'480'`.

@@ -2,53 +2,57 @@ import { CommandBuilder } from '../src/utils/CommandBuilder'
 import { ParamBuilder } from '../src/utils/ParamBuilder'
 import { StringUtils } from '../src/utils/StringUtils'
 
-test('buildCommand, when is a single video with normal quality, return the correct command output', () => {
+test('buildCommand, single video 1080p no cookies', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-  const result = commandBuilder.buildCommand(
-    'exampleURL',
-    'single',
-    'video',
-    'normal',
-    '',
-  )
+  const result = commandBuilder.buildCommand('exampleURL', 'single', 'video', '1080', false)
   expect(result).toBe(
-    'yt-dlp.exe "exampleURL" -f "best[ext=mp4]/best[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
+    'yt-dlp --js-runtimes deno "exampleURL" -f "bv*[vcodec^=avc][height<=1080]+ba[acodec=aac]/b[ext=mp4][height<=1080]/b[height<=1080]" --merge-output-format mp4 --restrict-filenames',
   )
 })
 
-test('buildCommand, when is a single video with high quality, return the correct command output', () => {
+test('buildCommand, single video 720p with cookies', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-  const result = commandBuilder.buildCommand(
-    'exampleURL',
-    'single',
-    'video',
-    'high',
-    '',
-  )
+  const result = commandBuilder.buildCommand('exampleURL', 'single', 'video', '720', true)
   expect(result).toBe(
-    'yt-dlp.exe "exampleURL" -f "bestvideo[ext=mp4]/bestaudio[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
+    'yt-dlp --js-runtimes deno "exampleURL" -f "bv*[vcodec^=avc][height<=720]+ba[acodec=aac]/b[ext=mp4][height<=720]/b[height<=720]" --merge-output-format mp4 --cookies-from-browser firefox --restrict-filenames',
   )
 })
 
-test('buildCommand, when is a playlist with video format and normal quality, return the correct command output', () => {
+test('buildCommand, playlist video 1080p no cookies', () => {
   const paramBuilder = new ParamBuilder()
   const stringUtils = new StringUtils()
   const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
 
-  const result = commandBuilder.buildCommand(
-    'exampleURL',
-    'playlist',
-    'video',
-    'high',
-    '',
-  )
+  const result = commandBuilder.buildCommand('exampleURL', 'playlist', 'video', '1080', false)
   expect(result).toBe(
-    'yt-dlp.exe --yes-playlist "exampleURL" -f "bestvideo[ext=mp4]/bestaudio[ext=aac]" --cookies-from-browser firefox --restrict-filenames',
+    'yt-dlp --js-runtimes deno "exampleURL" -f "bv*[vcodec^=avc][height<=1080]+ba[acodec=aac]/b[ext=mp4][height<=1080]/b[height<=1080]" --merge-output-format mp4 --restrict-filenames -o "%%(playlist_title)s/%%(playlist_index)03d - %%(title)s.%%(ext)s"',
+  )
+})
+
+test('buildCommand, single audio', () => {
+  const paramBuilder = new ParamBuilder()
+  const stringUtils = new StringUtils()
+  const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
+
+  const result = commandBuilder.buildCommand('exampleURL', 'single', 'audio', 'normal', false)
+  expect(result).toBe(
+    'yt-dlp -x --audio-format mp3 "exampleURL" --restrict-filenames',
+  )
+})
+
+test('buildCommand, playlist audio', () => {
+  const paramBuilder = new ParamBuilder()
+  const stringUtils = new StringUtils()
+  const commandBuilder = new CommandBuilder(paramBuilder, stringUtils)
+
+  const result = commandBuilder.buildCommand('exampleURL', 'playlist', 'audio', 'normal', false)
+  expect(result).toBe(
+    'yt-dlp -x --audio-format mp3 --yes-playlist "exampleURL" --restrict-filenames -o "%%(playlist_title)s/%%(playlist_index)s - %%(title)s.%%(ext)s"',
   )
 })
