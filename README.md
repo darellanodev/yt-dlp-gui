@@ -1,6 +1,6 @@
 # media-magnet
 
-This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com/yt-dlp/yt-dlp) application for learning purposes.
+A multi-tool GUI for video and audio downloads for learning purposes.
 
 ## THIS APPLICATION IS IN AN EARLY STAGE OF DEVELOPMENT
 
