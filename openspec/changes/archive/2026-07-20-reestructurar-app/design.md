@@ -1,6 +1,6 @@
 ## Context
 
-The yt-dlp-gui project is a command builder UI for yt-dlp. It currently runs inside Electron (desktop wrapper), but the actual application logic is entirely browser-based: React renders a form, the user fills it in, and a yt-dlp CLI command is generated as text output. No IPC, no native APIs, no filesystem access.
+The media-magnet project is a command builder UI for yt-dlp. It currently runs inside Electron (desktop wrapper), but the actual application logic is entirely browser-based: React renders a form, the user fills it in, and a yt-dlp CLI command is generated as text output. No IPC, no native APIs, no filesystem access.
 
 The Electron layer was scaffolded by `create-electron-vite` but never meaningfully used. Meanwhile, `UIManager.ts` bypasses React state entirely by calling `document.getElementById()` — an anti-pattern that makes the app harder to test and maintain.
 
@@ -9,6 +9,7 @@ The test suite already runs on Vitest (Jest config is dead code). Tailwind CSS i
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Remove Electron and all its dependencies from the project
 - Remove dead Jest configuration
 - Introduce Zustand for centralized form state management
@@ -18,6 +19,7 @@ The test suite already runs on Vitest (Jest config is dead code). Tailwind CSS i
 - Clean up empty/unnecessary config files
 
 **Non-Goals:**
+
 - Refactoring the command-building logic (ParamBuilder, CommandBuilder, StringUtils)
 - Changing the visual design or layout
 - Adding routing or multi-page navigation
@@ -33,6 +35,7 @@ The test suite already runs on Vitest (Jest config is dead code). Tailwind CSS i
 **Rationale**: Zustand provides minimal boilerplate, no providers wrapping the app, and simple `set`/`get` semantics. The user has prior experience with it. For a form with ~5 state fields, Redux would be overkill, and React Context + useReducer adds unnecessary nesting.
 
 **Alternatives considered**:
+
 - React Context + useReducer: More verbose, requires context providers, harder to test in isolation
 - Redux Toolkit: Too heavy for this scope, steep boilerplate for 5 fields
 - No state library (just props): Would require lifting state to App and threading it down — works but doesn't solve the UIManager DOM-coupling problem cleanly

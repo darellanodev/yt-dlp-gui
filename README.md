@@ -1,4 +1,4 @@
-# yt-dlp-gui
+# media-magnet
 
 This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com/yt-dlp/yt-dlp) application for learning purposes.
 
@@ -6,7 +6,7 @@ This a simple graphical user interface (GUI) for the [yt-dlp](https://github.com
 
 ## Github repository
 
-- <https://github.com/darellanodev/yt-dlp-gui>
+- <https://github.com/darellanodev/media-magnet>
 
 ## Technologies
 
